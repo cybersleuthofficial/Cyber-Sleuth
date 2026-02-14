@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <meta name="google-site-verification" content="9kpwtn-rELsPRIfBLBBcZqyzbSZAhjqSAjkJzBs2h3Y" />
     
-    <title>Cyber Sleuth | Nexus Security Terminal</title>
+    <title>Cyber Sleuth | Mobile Terminal</title>
     <style>
         :root {
             --neon-green: #0f0;
@@ -15,96 +15,94 @@
             --dark-bg: #050505;
         }
 
+        /* Full Mobile Reset */
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
         body {
             background-color: var(--dark-bg);
             color: white;
             font-family: 'Courier New', monospace;
             margin: 0; padding: 0;
+            overflow-x: hidden;
             display: flex; flex-direction: column; align-items: center;
         }
 
         header {
-            width: 100%; padding: 20px; text-align: center;
+            width: 100%; padding: 15px; text-align: center;
             border-bottom: 2px solid var(--neon-green);
-            box-shadow: 0 0 15px var(--neon-green);
-            background: rgba(0, 255, 0, 0.05);
+            box-shadow: 0 0 10px var(--neon-green);
+            position: sticky; top: 0; z-index: 100; background: var(--dark-bg);
         }
 
-        .logo { font-size: 2.2rem; font-weight: bold; color: var(--neon-green); text-shadow: 0 0 10px var(--neon-green); letter-spacing: 5px; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--neon-green); text-shadow: 0 0 8px var(--neon-green); letter-spacing: 3px; }
 
+        /* Ticker - Slowed for mobile reading */
         .news-ticker {
-            width: 100%; background: #111; padding: 10px 0;
+            width: 100%; background: #111; padding: 8px 0;
             border-bottom: 1px solid var(--cyber-blue);
             overflow: hidden; white-space: nowrap;
         }
 
         .ticker-text {
             display: inline-block; padding-left: 100%;
-            color: var(--alert-red); font-weight: bold;
-            animation: ticker 25s linear infinite;
+            color: var(--alert-red); font-size: 0.85rem;
+            animation: ticker 30s linear infinite;
         }
 
-        @keyframes ticker {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(-100%, 0); }
-        }
+        @keyframes ticker { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
 
         .container {
-            max-width: 1000px; width: 95%; margin-top: 30px;
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            width: 100%; padding: 20px;
+            display: flex; flex-direction: column; gap: 20px;
         }
 
+        /* Responsive Tool Cards */
         .card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--cyber-blue);
-            padding: 25px; border-radius: 12px;
-            transition: 0.3s; text-align: center;
+            padding: 20px; border-radius: 12px;
+            text-align: center; width: 100%;
         }
 
-        .card:hover { box-shadow: 0 0 20px var(--cyber-blue); transform: translateY(-5px); }
-
-        h3 { color: var(--cyber-blue); margin-bottom: 20px; text-transform: uppercase; }
+        h3 { color: var(--cyber-blue); margin-bottom: 15px; font-size: 1.1rem; text-transform: uppercase; }
 
         input, textarea {
-            width: 85%; padding: 12px; background: #000;
+            width: 100%; padding: 14px; background: #000;
             border: 1px solid var(--neon-green); color: var(--neon-green);
-            margin-bottom: 15px; border-radius: 5px; outline: none;
-            font-family: 'Courier New', monospace;
+            margin-bottom: 15px; border-radius: 8px; outline: none;
+            font-size: 1rem; /* Prevents iOS zoom on focus */
         }
 
         .btn {
-            background: transparent; color: var(--neon-green);
-            border: 1px solid var(--neon-green); padding: 12px 25px;
-            cursor: pointer; font-weight: bold; transition: 0.3s;
+            width: 100%; background: transparent; color: var(--neon-green);
+            border: 1px solid var(--neon-green); padding: 14px;
+            cursor: pointer; font-weight: bold; border-radius: 8px;
+            transition: 0.3s; font-size: 0.9rem;
         }
 
-        .btn:hover { background: var(--neon-green); color: black; box-shadow: 0 0 15px var(--neon-green); }
+        .btn:active { background: var(--neon-green); color: black; }
 
-        .about-section {
-            width: 90%; max-width: 960px;
-            padding: 40px 20px; background: rgba(0,212,255,0.05); 
-            border: 1px solid var(--cyber-blue); margin-top: 50px; 
-            text-align: left; border-radius: 12px;
+        /* Mobile Threat Section */
+        .threat-section { width: 100%; padding: 20px; }
+        .threat-grid { display: flex; flex-direction: column; gap: 15px; }
+
+        .threat-card {
+            background: #111; border-left: 4px solid var(--alert-red);
+            padding: 15px; border-radius: 8px;
         }
 
-        .report-section {
-            width: 95%; max-width: 1000px;
-            margin-top: 40px; margin-bottom: 50px;
-            padding: 30px; background: rgba(255, 49, 49, 0.05);
-            border: 1px dashed var(--alert-red); border-radius: 12px;
-            text-align: center;
-        }
+        .threat-tag { font-size: 0.65rem; background: var(--alert-red); color: white; padding: 2px 6px; border-radius: 3px; }
 
+        /* About & Report */
+        .about-section { width: 90%; padding: 20px; background: rgba(0,212,255,0.05); border: 1px solid var(--cyber-blue); border-radius: 12px; margin-bottom: 20px; }
+        .report-section { width: 90%; padding: 20px; background: rgba(255, 49, 49, 0.05); border: 1px dashed var(--alert-red); border-radius: 12px; text-align: center; }
+
+        footer { padding: 25px; text-align: center; border-top: 1px solid #333; width: 100%; font-size: 0.75rem; }
         .insta-link { color: #e1306c; text-decoration: none; font-weight: bold; }
-
-        footer {
-            margin-top: auto; padding: 30px; width: 100%;
-            border-top: 1px solid #333; text-align: center; font-size: 0.9rem;
-        }
-
+        
         .scanning { color: var(--neon-green); animation: blink 0.8s infinite; }
         @keyframes blink { 50% { opacity: 0; } }
+
     </style>
 </head>
 <body>
@@ -115,12 +113,12 @@
 
     <header>
         <div class="logo">CYBER SLEUTH</div>
-        <p>Managed by Nexus Security Lab</p>
+        <p style="font-size: 0.7rem; margin: 5px 0 0;">Mobile Security Terminal | Nexus</p>
     </header>
 
     <div class="news-ticker">
         <div class="ticker-text">
-            [STATUS: ACTIVE] | Follow <a href="https://www.instagram.com/_nexus.exe_?igsh=MWt2M2R5enduaHc4Yw==" target="_blank" style="color:var(--neon-green); text-decoration:none;">@_nexus.exe_</a> for Security Tips | [ALERT] Website is now officially Live on Google!
+            [NEW THREAT] WhatsApp Job Scams rising... | Follow <a href="https://www.instagram.com/_nexus.exe_/" target="_blank" style="color:var(--neon-green); text-decoration:none;">@_nexus.exe_</a> | [ALERT] Don't share OTP!
         </div>
     </div>
 
@@ -128,78 +126,84 @@
         <div class="card">
             <h3>Password Shield</h3>
             <input type="password" id="passInput" placeholder="Analyze Password...">
-            <button class="btn" onclick="triggerAction('pass')">ANALYZE</button>
-            <div id="passResult" style="margin-top:10px"></div>
+            <button class="btn" onclick="triggerAction('pass')">ANALYZE SECURITY</button>
+            <div id="passResult" style="margin-top:10px; font-size: 0.8rem;"></div>
         </div>
 
         <div class="card">
             <h3>Breach Scanner</h3>
-            <input type="text" id="emailInput" placeholder="Scan Email...">
-            <button class="btn" onclick="triggerAction('email')">DEEP SCAN</button>
-            <div id="emailResult" style="margin-top:10px"></div>
+            <input type="email" id="emailInput" placeholder="Scan Email...">
+            <button class="btn" onclick="triggerAction('email')">START DEEP SCAN</button>
+            <div id="emailResult" style="margin-top:10px; font-size: 0.8rem;"></div>
         </div>
 
         <div class="card">
             <h3>URL Analyzer</h3>
             <input type="text" id="urlInput" placeholder="Paste Link...">
-            <button class="btn" onclick="triggerAction('url')">CHECK THREAT</button>
-            <div id="urlResult" style="margin-top:10px"></div>
+            <button class="btn" onclick="triggerAction('url')">VERIFY THREAT</button>
+            <div id="urlResult" style="margin-top:10px; font-size: 0.8rem;"></div>
+        </div>
+    </div>
+
+    <div class="threat-section">
+        <h2 style="color:var(--alert-red); font-size: 1.2rem; text-align: center;">🚨 ACTIVE THREATS</h2>
+        <div class="threat-grid">
+            <div class="threat-card">
+                <span class="threat-tag">HIGH RISK</span>
+                <h4 style="color:var(--cyber-blue); margin: 8px 0; font-size: 0.9rem;">WhatsApp Job Scam</h4>
+                <p style="font-size: 0.75rem; color: #ccc;">Fake 'Like & Subscribe' job offers. They ask for money later.</p>
+                <button class="btn" style="padding: 8px; font-size: 0.7rem;" onclick="alert('Bhai, kabhi bhi naukri ke liye paise mat dena. Aise numbers ko turant block karo.')">PROTECT ME</button>
+            </div>
+            <div class="threat-card">
+                <span class="threat-tag">CRITICAL</span>
+                <h4 style="color:var(--cyber-blue); margin: 8px 0; font-size: 0.9rem;">Electricity Bill Scam</h4>
+                <p style="font-size: 0.75rem; color: #ccc;">Fake SMS: 'Power will be cut at 9:30 PM'. Don't call them.</p>
+                <button class="btn" style="padding: 8px; font-size: 0.7rem;" onclick="alert('Bijli vibhag kabhi aise personal number se SMS nahi bhejta. Official app use karo.')">PROTECT ME</button>
+            </div>
         </div>
     </div>
 
     <div class="about-section">
-        <h2 style="color: var(--cyber-blue); margin-top: 0;">🛡️ ABOUT CYBER SLEUTH</h2>
-        <p style="color: #ccc; line-height: 1.6; font-size: 0.95rem;">
-            Cyber Sleuth is an advanced security initiative by <b>Team Nexus</b>. 
-            Managed by <a href="https://www.instagram.com/_nexus.exe_?igsh=MWt2M2R5enduaHc4Yw==" target="_blank" style="color:var(--neon-green); text-decoration:none;">@_nexus.exe_</a>, 
-            we provide tools to protect users from online scams and data breaches.
+        <h3 style="font-size: 1rem;">🛡️ ABOUT</h3>
+        <p style="color: #ccc; line-height: 1.5; font-size: 0.8rem;">
+            Cyber Sleuth is a mobile-first safety tool by <b>Team Nexus</b>. Managed by <a href="https://www.instagram.com/_nexus.exe_/" target="_blank" style="color:var(--neon-green); text-decoration:none;">@_nexus.exe_</a>.
         </p>
     </div>
 
     <div class="report-section">
-        <h2 style="color:var(--alert-red)">REPORT A SCAM</h2>
-        <input type="text" id="scamTitle" placeholder="Scam Subject">
-        <br>
-        <textarea id="scamDesc" rows="4" placeholder="Describe the incident..."></textarea>
-        <br>
+        <h3 style="color:var(--alert-red); font-size: 1rem;">REPORT A SCAM</h3>
+        <input type="text" id="scamTitle" placeholder="Scam Type">
+        <textarea id="scamDesc" rows="3" placeholder="Explain what happened..."></textarea>
         <button class="btn" style="color:var(--alert-red); border-color:var(--alert-red)" onclick="triggerAction('report')">SUBMIT REPORT</button>
-        <div id="reportStatus" style="margin-top:15px"></div>
+        <div id="reportStatus" style="margin-top:10px; font-size: 0.8rem;"></div>
     </div>
 
     <footer>
-        Connect with Developer: <a href="https://www.instagram.com/_nexus.exe_?igsh=MWt2M2R5enduaHc4Yw==" target="_blank" class="insta-link">@_nexus.exe_</a>
+        Follow: <a href="https://www.instagram.com/_nexus.exe_/" target="_blank" class="insta-link">@_nexus.exe_</a>
         <br><br>
-        © 2026 Cyber Sleuth | Built by Nexus Security Lab
+        © 2026 Cyber Sleuth | Nexus Security Lab
     </footer>
 
     <script>
         const sound = document.getElementById('scanSound');
-
         function triggerAction(type) {
-            sound.currentTime = 0; 
-            sound.play();
-
+            sound.currentTime = 0; sound.play();
             if(type === 'pass') {
-                let res = document.getElementById('passResult');
-                res.innerHTML = "<span class='scanning'>Checking Entropy...</span>";
-                setTimeout(() => { res.innerHTML = "STATUS: ENCRYPTED ✅"; }, 800);
+                document.getElementById('passResult').innerHTML = "<span class='scanning'>Checking...</span>";
+                setTimeout(() => { document.getElementById('passResult').innerHTML = "STATUS: ENCRYPTED ✅"; }, 800);
             }
             if(type === 'email') {
-                let res = document.getElementById('emailResult');
-                res.innerHTML = "<span class='scanning'>Searching Leaks...</span>";
-                setTimeout(() => { res.innerHTML = "STATUS: SECURE ✅"; }, 2000);
+                document.getElementById('emailResult').innerHTML = "<span class='scanning'>Scanning Nodes...</span>";
+                setTimeout(() => { document.getElementById('emailResult').innerHTML = "STATUS: NO LEAKS ✅"; }, 2000);
             }
             if(type === 'url') {
-                let res = document.getElementById('urlResult');
-                res.innerHTML = "<span class='scanning'>Analyzing...</span>";
-                setTimeout(() => { res.innerHTML = "THREAT LEVEL: 0% ✅"; }, 1500);
+                document.getElementById('urlResult').innerHTML = "<span class='scanning'>Tracing...</span>";
+                setTimeout(() => { document.getElementById('urlResult').innerHTML = "SAFE ✅"; }, 1500);
             }
             if(type === 'report') {
-                let res = document.getElementById('reportStatus');
-                res.innerHTML = "<span style='color:var(--neon-green)'>[✓] Data Encrypted & Sent to HQ!</span>";
+                document.getElementById('reportStatus').innerHTML = "<span style='color:var(--neon-green)'>[✓] Report Encrypted & Sent!</span>";
             }
         }
     </script>
 </body>
 </html>
-
