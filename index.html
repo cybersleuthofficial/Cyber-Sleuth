@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="google-site-verification" content="YAHAN_APNA_GOOGLE_CODE_DALO" />
+    
     <title>Cyber Sleuth | Nexus Security Terminal</title>
     <style>
         :root {
@@ -29,7 +32,6 @@
 
         .logo { font-size: 2.2rem; font-weight: bold; color: var(--neon-green); text-shadow: 0 0 10px var(--neon-green); letter-spacing: 5px; }
 
-        /* LIVE NEWS TICKER */
         .news-ticker {
             width: 100%; background: #111; padding: 10px 0;
             border-bottom: 1px solid var(--cyber-blue);
@@ -79,7 +81,6 @@
 
         .btn:hover { background: var(--neon-green); color: black; box-shadow: 0 0 15px var(--neon-green); }
 
-        /* ABOUT SECTION */
         .about-section {
             width: 90%; max-width: 960px;
             padding: 40px 20px; background: rgba(0,212,255,0.05); 
@@ -87,7 +88,6 @@
             text-align: left; border-radius: 12px;
         }
 
-        /* REPORT SECTION */
         .report-section {
             width: 95%; max-width: 1000px;
             margin-top: 40px; margin-bottom: 50px;
@@ -96,10 +96,7 @@
             text-align: center;
         }
 
-        .insta-link {
-            color: #e1306c; text-decoration: none; font-weight: bold;
-            text-shadow: 0 0 5px #e1306c;
-        }
+        .insta-link { color: #e1306c; text-decoration: none; font-weight: bold; }
 
         footer {
             margin-top: auto; padding: 30px; width: 100%;
@@ -123,7 +120,7 @@
 
     <div class="news-ticker">
         <div class="ticker-text">
-            [STATUS: ACTIVE] | Follow <a href="https://www.instagram.com/_nexus.exe_?igsh=MWt2M2R5enduaHc4Yw==" target="_blank" style="color:var(--neon-green); text-decoration:none;">@_nexus.exe_</a> for Real-time Protection Tips | [ALERT] Maha Shivratri Special Wish Page is now Live!
+            [STATUS: ACTIVE] | Follow <a href="https://www.instagram.com/_nexus.exe_?igsh=MWt2M2R5enduaHc4Yw==" target="_blank" style="color:var(--neon-green); text-decoration:none;">@_nexus.exe_</a> for Security Tips | [ALERT] Website is now officially Live on Google!
         </div>
     </div>
 
@@ -155,8 +152,7 @@
         <p style="color: #ccc; line-height: 1.6; font-size: 0.95rem;">
             Cyber Sleuth is an advanced security initiative by <b>Team Nexus</b>. 
             Managed by <a href="https://www.instagram.com/_nexus.exe_?igsh=MWt2M2R5enduaHc4Yw==" target="_blank" style="color:var(--neon-green); text-decoration:none;">@_nexus.exe_</a>, 
-            our vision is to provide real-time threat intelligence and simple tools to protect users from online scams, 
-            phishing, and data breaches. We believe in "Digital Suraksha" for everyone.
+            we provide tools to protect users from online scams and data breaches.
         </p>
     </div>
 
@@ -190,17 +186,17 @@
             }
             if(type === 'email') {
                 let res = document.getElementById('emailResult');
-                res.innerHTML = "<span class='scanning'>Searching Dark Web...</span>";
+                res.innerHTML = "<span class='scanning'>Searching Leaks...</span>";
                 setTimeout(() => { res.innerHTML = "STATUS: SECURE ✅"; }, 2000);
             }
             if(type === 'url') {
                 let res = document.getElementById('urlResult');
-                res.innerHTML = "<span class='scanning'>Analyzing Packets...</span>";
+                res.innerHTML = "<span class='scanning'>Analyzing...</span>";
                 setTimeout(() => { res.innerHTML = "THREAT LEVEL: 0% ✅"; }, 1500);
             }
             if(type === 'report') {
                 let res = document.getElementById('reportStatus');
-                res.innerHTML = "<span style='color:var(--neon-green)'>[✓] Report Encrypted & Sent to Nexus HQ!</span>";
+                res.innerHTML = "<span style='color:var(--neon-green)'>[✓] Data Encrypted & Sent to HQ!</span>";
             }
         }
     </script>
