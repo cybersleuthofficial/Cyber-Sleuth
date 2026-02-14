@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Sleuth | Nexus Security Terminal</title>
+    <style>
+        :root {
+            --neon-green: #0f0;
+            --cyber-blue: #00d4ff;
+            --alert-red: #ff3131;
+            --dark-bg: #050505;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'Courier New', monospace;
+            margin: 0; padding: 0;
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        header {
+            width: 100%; padding: 20px; text-align: center;
+            border-bottom: 2px solid var(--neon-green);
+            box-shadow: 0 0 15px var(--neon-green);
+            background: rgba(0, 255, 0, 0.05);
+        }
+
+        .logo { font-size: 2.2rem; font-weight: bold; color: var(--neon-green); text-shadow: 0 0 10px var(--neon-green); letter-spacing: 5px; }
+
+        /* LIVE NEWS TICKER */
+        .news-ticker {
+            width: 100%; background: #111; padding: 10px 0;
+            border-bottom: 1px solid var(--cyber-blue);
+            overflow: hidden; white-space: nowrap;
+        }
+
+        .ticker-text {
+            display: inline-block; padding-left: 100%;
+            color: var(--alert-red); font-weight: bold;
+            animation: ticker 25s linear infinite;
+        }
+
+        @keyframes ticker {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+
+        .container {
+            max-width: 1000px; width: 95%; margin-top: 30px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--cyber-blue);
+            padding: 25px; border-radius: 12px;
+            transition: 0.3s; text-align: center;
+        }
+
+        .card:hover { box-shadow: 0 0 20px var(--cyber-blue); transform: translateY(-5px); }
+
+        h3 { color: var(--cyber-blue); margin-bottom: 20px; text-transform: uppercase; }
+
+        input, textarea {
+            width: 85%; padding: 12px; background: #000;
+            border: 1px solid var(--neon-green); color: var(--neon-green);
+            margin-bottom: 15px; border-radius: 5px; outline: none;
+            font-family: 'Courier New', monospace;
+        }
+
+        .btn {
+            background: transparent; color: var(--neon-green);
+            border: 1px solid var(--neon-green); padding: 12px 25px;
+            cursor: pointer; font-weight: bold; transition: 0.3s;
+        }
+
+        .btn:hover { background: var(--neon-green); color: black; box-shadow: 0 0 15px var(--neon-green); }
+
+        /* ABOUT SECTION */
+        .about-section {
+            width: 90%; max-width: 960px;
+            padding: 40px 20px; background: rgba(0,212,255,0.05); 
+            border: 1px solid var(--cyber-blue); margin-top: 50px; 
+            text-align: left; border-radius: 12px;
+        }
+
+        /* REPORT SECTION */
+        .report-section {
+            width: 95%; max-width: 1000px;
+            margin-top: 40px; margin-bottom: 50px;
+            padding: 30px; background: rgba(255, 49, 49, 0.05);
+            border: 1px dashed var(--alert-red); border-radius: 12px;
+            text-align: center;
+        }
+
+        .insta-link {
+            color: #e1306c; text-decoration: none; font-weight: bold;
+            text-shadow: 0 0 5px #e1306c;
+        }
+
+        footer {
+            margin-top: auto; padding: 30px; width: 100%;
+            border-top: 1px solid #333; text-align: center; font-size: 0.9rem;
+        }
+
+        .scanning { color: var(--neon-green); animation: blink 0.8s infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+    </style>
+</head>
+<body>
+
+    <audio id="scanSound">
+        <source src="https://www.soundjay.com/buttons/sounds/button-20.mp3" type="audio/mpeg">
+    </audio>
+
+    <header>
+        <div class="logo">CYBER SLEUTH</div>
+        <p>Managed by Nexus Security Lab</p>
+    </header>
+
+    <div class="news-ticker">
+        <div class="ticker-text">
+            [STATUS: ACTIVE] | Follow <a href="https://www.instagram.com/_nexus.exe_?igsh=MWt2M2R5enduaHc4Yw==" target="_blank" style="color:var(--neon-green); text-decoration:none;">@_nexus.exe_</a> for Real-time Protection Tips | [ALERT] Maha Shivratri Special Wish Page is now Live!
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <h3>Password Shield</h3>
+            <input type="password" id="passInput" placeholder="Analyze Password...">
+            <button class="btn" onclick="triggerAction('pass')">ANALYZE</button>
+            <div id="passResult" style="margin-top:10px"></div>
+        </div>
+
+        <div class="card">
+            <h3>Breach Scanner</h3>
+            <input type="text" id="emailInput" placeholder="Scan Email...">
+            <button class="btn" onclick="triggerAction('email')">DEEP SCAN</button>
+            <div id="emailResult" style="margin-top:10px"></div>
+        </div>
+
+        <div class="card">
+            <h3>URL Analyzer</h3>
+            <input type="text" id="urlInput" placeholder="Paste Link...">
+            <button class="btn" onclick="triggerAction('url')">CHECK THREAT</button>
+            <div id="urlResult" style="margin-top:10px"></div>
+        </div>
+    </div>
+
+    <div class="about-section">
+        <h2 style="color: var(--cyber-blue); margin-top: 0;">🛡️ ABOUT CYBER SLEUTH</h2>
+        <p style="color: #ccc; line-height: 1.6; font-size: 0.95rem;">
+            Cyber Sleuth is an advanced security initiative by <b>Team Nexus</b>. 
+            Managed by <a href="https://www.instagram.com/_nexus.exe_?igsh=MWt2M2R5enduaHc4Yw==" target="_blank" style="color:var(--neon-green); text-decoration:none;">@_nexus.exe_</a>, 
+            our vision is to provide real-time threat intelligence and simple tools to protect users from online scams, 
+            phishing, and data breaches. We believe in "Digital Suraksha" for everyone.
+        </p>
+    </div>
+
+    <div class="report-section">
+        <h2 style="color:var(--alert-red)">REPORT A SCAM</h2>
+        <input type="text" id="scamTitle" placeholder="Scam Subject">
+        <br>
+        <textarea id="scamDesc" rows="4" placeholder="Describe the incident..."></textarea>
+        <br>
+        <button class="btn" style="color:var(--alert-red); border-color:var(--alert-red)" onclick="triggerAction('report')">SUBMIT REPORT</button>
+        <div id="reportStatus" style="margin-top:15px"></div>
+    </div>
+
+    <footer>
+        Connect with Developer: <a href="https://www.instagram.com/_nexus.exe_?igsh=MWt2M2R5enduaHc4Yw==" target="_blank" class="insta-link">@_nexus.exe_</a>
+        <br><br>
+        © 2026 Cyber Sleuth | Built by Nexus Security Lab
+    </footer>
+
+    <script>
+        const sound = document.getElementById('scanSound');
+
+        function triggerAction(type) {
+            sound.currentTime = 0; 
+            sound.play();
+
+            if(type === 'pass') {
+                let res = document.getElementById('passResult');
+                res.innerHTML = "<span class='scanning'>Checking Entropy...</span>";
+                setTimeout(() => { res.innerHTML = "STATUS: ENCRYPTED ✅"; }, 800);
+            }
+            if(type === 'email') {
+                let res = document.getElementById('emailResult');
+                res.innerHTML = "<span class='scanning'>Searching Dark Web...</span>";
+                setTimeout(() => { res.innerHTML = "STATUS: SECURE ✅"; }, 2000);
+            }
+            if(type === 'url') {
+                let res = document.getElementById('urlResult');
+                res.innerHTML = "<span class='scanning'>Analyzing Packets...</span>";
+                setTimeout(() => { res.innerHTML = "THREAT LEVEL: 0% ✅"; }, 1500);
+            }
+            if(type === 'report') {
+                let res = document.getElementById('reportStatus');
+                res.innerHTML = "<span style='color:var(--neon-green)'>[✓] Report Encrypted & Sent to Nexus HQ!</span>";
+            }
+        }
+    </script>
+</body>
+</html>
